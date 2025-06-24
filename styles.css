@@ -141,7 +141,6 @@ body {
   padding: 20px;
   margin: 10px auto;
   display: block;
-  background-color: #014421;
   border-radius: 50%;
   object-fit: contain;
   filter: brightness(0) saturate(100%) invert(92%) sepia(30%) saturate(700%) hue-rotate(90deg) brightness(120%) contrast(95%);
