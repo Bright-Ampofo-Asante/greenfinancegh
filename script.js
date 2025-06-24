@@ -1,8 +1,8 @@
 // script.js
 
 function toggleMenu() {
-  const nav = document.getElementById('mainNav').querySelector('ul');
-  nav.classList.toggle('show');
+  const navList = document.querySelector('#mainNav ul');
+  navList.classList.toggle('show');
 }
 
 let currentSlide = 0;
