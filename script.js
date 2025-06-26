@@ -2,32 +2,40 @@
 
 function toggleMenu() {
   const navList = document.querySelector('#mainNav ul');
+  const toggleBtn = document.querySelector('.menu-toggle');
+
   navList.classList.toggle('show');
 
-  // Close menu when any nav link is clicked
+  // Toggle icon between ☰ and ✖
+  const isOpen = navList.classList.contains('show');
+  toggleBtn.textContent = isOpen ? '✖' : '☰';
+
+  // Close menu when a link is clicked
   navList.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       navList.classList.remove('show');
+      toggleBtn.textContent = '☰';
     });
   });
 
-  // Close menu when clicking outside the nav
-  document.addEventListener('click', function handleOutsideClick(e) {
-    const isClickInside = navList.contains(e.target) || e.target.classList.contains('menu-toggle');
+  // Close menu on outside click
+  function handleOutsideClick(e) {
+    const isClickInside = navList.contains(e.target) || toggleBtn.contains(e.target);
     if (!isClickInside) {
       navList.classList.remove('show');
+      toggleBtn.textContent = '☰';
       document.removeEventListener('click', handleOutsideClick);
     }
-  });
+  }
 
-  // Close menu if window is resized to desktop
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-      navList.classList.remove('show');
-    }
-  });
+  if (isOpen) {
+    setTimeout(() => {
+      document.addEventListener('click', handleOutsideClick);
+    }, 10);
+  }
 }
 
+// Image slider
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slider-frame .slide');
 
@@ -43,21 +51,22 @@ function nextSlide() {
 }
 
 window.addEventListener('load', () => {
+  // Show first slide and start auto-rotation
   if (slides.length > 0) {
     showSlide(currentSlide);
     setInterval(nextSlide, 5000);
   }
 
-  // Read More / Read Less Functionality
-  document.querySelectorAll('.read-more-btn').forEach(function (button) {
-    button.addEventListener('click', function () {
+  // Read More / Read Less toggle
+  document.querySelectorAll('.read-more-btn').forEach(button => {
+    button.addEventListener('click', () => {
       const paragraph = button.closest('div').previousElementSibling;
       paragraph.classList.toggle('expanded');
       button.textContent = paragraph.classList.contains('expanded') ? 'Read Less' : 'Read More';
     });
   });
 
-  // Smooth Scroll with Offset (Banner on top)
+  // Smooth scroll with offset
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
@@ -66,7 +75,7 @@ window.addEventListener('load', () => {
         const targetId = href.substring(1);
         const section = document.getElementById(targetId);
         if (section) {
-          const offset = 100; // Adjust to match banner height
+          const offset = 100;
           const topPosition = section.offsetTop - offset;
           window.scrollTo({
             top: topPosition,
@@ -75,5 +84,15 @@ window.addEventListener('load', () => {
         }
       }
     });
+  });
+
+  // Close menu if resized to desktop view
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+      const navList = document.querySelector('#mainNav ul');
+      const toggleBtn = document.querySelector('.menu-toggle');
+      navList.classList.remove('show');
+      toggleBtn.textContent = '☰';
+    }
   });
 });
