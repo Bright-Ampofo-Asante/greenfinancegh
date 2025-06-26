@@ -9,13 +9,13 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="container">
+    <div class="container header-container">
       <div class="logo">
         <img src="assets/logo.png" alt="Logo" style="height: 50px;" />
       </div>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
       <nav class="main-nav" id="mainNav">
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-        <ul class="nav-links">
+        <ul>
           <li><a href="#">Home</a></li>
           <li><a href="#financing">Financing</a></li>
           <li><a href="#stories">Success Stories</a></li>
@@ -28,10 +28,14 @@
 
   <section class="slider">
     <div class="container">
-      <div class="slider-frame">
+      <div class="slider-frame" id="sliderFrame">
         <img src="assets/slider1.jpg" alt="Banner 1" class="slide" />
         <img src="assets/slider2.jpg" alt="Banner 2" class="slide" />
         <img src="assets/slider3.jpg" alt="Banner 3" class="slide" />
+      </div>
+      <div class="slider-controls">
+        <button onclick="prevSlide()">❮</button>
+        <button onclick="nextSlide()">❯</button>
       </div>
     </div>
   </section>
@@ -70,13 +74,12 @@
     <div class="container">
       <h2>Success Stories</h2>
 
-      <!-- PEG Africa -->
       <div class="card horizontal">
         <img src="assets/peg.jpg" alt="PEG Africa">
         <div>
           <h3>PAYG SOLAR HOME SYSTEMS</h3>
           <p class="story-text">
-            PEG Africa was founded in 2013 by Hugh Whalan and Nate Heller. The company began by acquiring Impact Energies and piloting solar home systems (SHS) using licensing, notably from M-KOPA and Tanzanian companies...
+            PEG Africa was founded in 2013 by Hugh Whalan and Nate Heller. The company began by acquiring Impact Energies and piloting solar home systems (SHS)... 
           </p>
           <div class="read-more-wrapper">
             <button class="read-more-btn">Read More</button>
@@ -84,13 +87,12 @@
         </div>
       </div>
 
-      <!-- Sabon Gari -->
       <div class="card horizontal">
         <img src="assets/sabon.jpg" alt="Sabon Gari">
         <div>
           <h3>SOLAR PV + BATTERY STORAGE</h3>
           <p class="story-text">
-            In 2018, Sabon Gari Market became one of the first large-scale private mini-grids to eliminate diesel generators under Nigeria’s Energizing Economies Program...
+            In 2018, Sabon Gari Market became one of the first large-scale mini-grids to eliminate diesel generators under the Nigerian REA program...
           </p>
           <div class="read-more-wrapper">
             <button class="read-more-btn">Read More</button>
@@ -98,20 +100,18 @@
         </div>
       </div>
 
-      <!-- Bui Power -->
       <div class="card horizontal">
         <img src="assets/bui.jpg" alt="Bui Solar">
         <div>
           <h3>250 MW PLANT USING BOTH SOLAR AND HYDRO</h3>
           <p class="story-text">
-            The Bui Power Authority (BPA) added a 250 MW solar hybrid to its existing 400 MW hydro facility to improve resilience and renewable output...
+            Bui Power Authority expanded its hydroelectric capabilities with a 250 MW solar hybrid, adding resilience and lowering CO₂ emissions...
           </p>
           <div class="read-more-wrapper">
             <button class="read-more-btn">Read More</button>
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
