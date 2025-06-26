@@ -3,6 +3,29 @@
 function toggleMenu() {
   const navList = document.querySelector('#mainNav ul');
   navList.classList.toggle('show');
+
+  // Close menu when any nav link is clicked
+  navList.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navList.classList.remove('show');
+    });
+  });
+
+  // Close menu when clicking outside the nav
+  document.addEventListener('click', function handleOutsideClick(e) {
+    const isClickInside = navList.contains(e.target) || e.target.classList.contains('menu-toggle');
+    if (!isClickInside) {
+      navList.classList.remove('show');
+      document.removeEventListener('click', handleOutsideClick);
+    }
+  });
+
+  // Close menu if window is resized to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+      navList.classList.remove('show');
+    }
+  });
 }
 
 let currentSlide = 0;
@@ -26,7 +49,7 @@ window.addEventListener('load', () => {
   }
 
   // Read More / Read Less Functionality
-  document.querySelectorAll('.read-more-btn').forEach(function(button) {
+  document.querySelectorAll('.read-more-btn').forEach(function (button) {
     button.addEventListener('click', function () {
       const paragraph = button.closest('div').previousElementSibling;
       paragraph.classList.toggle('expanded');
